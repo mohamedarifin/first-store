@@ -1,0 +1,564 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+html{
+    scroll-behavior:auto;
+    scroll-padding: 50px;
+}
+body{
+    min-height: 100vh;
+    width: 100vw;
+    background: white;
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+.searchcon{
+    min-height: 55px;
+    width: 100%;
+    background-color: rgb(212, 178, 178);
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 0px 0px 5px 5px;
+    box-shadow: 0px 0px 5px rgb(111, 84, 84);
+    position: sticky;
+    top: 0;
+    padding-top: 10px;
+    padding-bottom: 2px;
+    z-index: 99;
+}
+.searchcon .searchbar{
+    height: 35px;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.count_no{
+    background: rgb(0, 0, 0);
+    height: 20px;
+    min-width: 20px;
+    position: relative;
+    right: 15px;
+    bottom: 3px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    padding: 0px 5px;
+    font-size: 10px;
+    cursor: pointer;
+}
+.searchcon .searchbar input{
+    height: 100%;
+    width:85%;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding-right: 35px;
+}
+.search_items{
+    height: 98px;
+    width: 50%;
+    list-style: none;
+    margin-top: 2px;
+    overflow:scroll;
+    scrollbar-gutter: none;
+    display: none;
+}
+.search_items::-webkit-scrollbar{
+    display: none;
+}
+a{
+    text-decoration: none;
+}
+.search_items .scroll_items{
+    width: 100%;
+    min-height:0px;
+   
+}
+.search_items .scroll_items li{
+    font-size: 17px;
+    padding: 5px 0px 5px 10px ;
+    border-radius: 5px;
+    margin-top: 2px;
+    background:whitesmoke;
+    color: black;
+}
+.shirt_con{
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.shirt_con .shirt_title{
+    background-color: rgb(212, 178, 178);
+    color: black;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 600;
+    border: 2px solid black;
+    text-decoration: none;
+}
+.shirt_con a{
+    text-decoration: none;
+}
+.shirt_rate{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+.title{
+    margin-bottom: 5px;
+}
+.rate_cont{
+    display: flex;
+}
+.shirt_con .shirt_list{
+    width: 100%;
+    min-height: 400px;
+    margin-top: 10px;
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.add_cart_cont{
+   
+   
+    color: rgb(0, 0, 0);
+    height: 35px;
+    width: 35px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 30px;
+    margin-left: 20px;
+    cursor: pointer;
+    
+    
+}
+.add_cart_cont:hover{
+    background-color: rgba(0, 0, 0, 0.411);    
+}
+.shirt_con .shirt_list .product{
+    width: 19%;
+    aspect-ratio:1/1.4;
+    background-color: #ffffff;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 0px 5px rgb(132, 130, 130);
+
+}
+.shirt_con .shirt_list .product .productimg{
+    width:100% ;
+    height: 85%;
+    padding: 5px;
+    border-bottom: 1px solid black;  
+}
+.shirt_con .shirt_list .product .productimg img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+.product_buy{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 5px;
+    cursor:default;
+    height: 50px;background: rgb(243, 179, 179);
+}
+/* .product_buy .title{
+} */
+.product_buy .buy{
+    background: rgb(41, 141, 1);
+    padding: 2px 10px;
+    border-radius: 3px;
+    font-size:15px;
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+}
+.product_buy a{
+    text-decoration: none;
+}
+.product_buy .buy:hover{
+    transform: scale(1.05);
+}
+.product_buy .buy:active{
+    transform: scale(0.95);
+}
+.close{
+   
+    height: 35px;
+    width: 35px;
+    border-radius: 0px 5px 5px 0px;
+    text-align: center;
+    line-height: 35px;
+    background: red;
+    font-weight: bold;
+    font-size: 24px;
+    cursor: pointer;
+}
+.cartadd{
+    position: absolute;
+    /* top: 10px; */
+    /* right: 10%; */
+    background: rgb(192, 142, 142);
+    height: 30px;
+    width: 30px;
+    color: white;
+
+    border-radius:10px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    margin: 5px;
+    cursor: pointer;
+
+
+}
+.cartadd:hover{
+    transform: scale(0.95);
+}
+.cartadd:active{
+    transform: scale(1.05);
+}
+.add_cart_back_cover{
+    height: 100%;
+    width: 100%;
+    transition: all .2s linear;
+    background: rgba(0, 0, 0, 0.698);
+    position: fixed;
+    top: 0;
+    right: -200%;
+    z-index: 999;
+    
+
+}
+.titleamount{
+    display: flex;flex-direction: column;
+    justify-content: space-between;
+    height: 70px;
+    padding: 10px 0px;
+
+}
+.add_add_cart{
+    position: fixed;
+    top: 0;
+    right: 0%;
+    transition: all .2s linear;
+}
+
+.add_cart_list_back{
+    height: 100%;
+    width: 400px;
+   background: rgba(255, 255, 255, 0.672);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    overflow: scroll;
+
+}
+.add_cart_list_back::-webkit-scrollbar{
+    display: none;
+}
+.add_cart_list{
+    width: 100%;
+    min-height: 100%;
+}
+.cart_list{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed black;
+}
+.cart_list img{
+    width: 50px;
+    height: 60px;
+    margin-right: 5px;
+    border: 2px solid black;
+    
+}
+.card_rate{
+    display: flex;
+    margin-right: 5px;
+
+}
+.incre_decre{
+    display: flex;
+    margin-right: 5px;
+    border: 2px solid black;
+   
+}
+.incre_decre .minus{
+    height: 22px;
+    width: 27px;
+    background: rgb(0, 0, 0);
+    line-height: 22px;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+}
+.incre_decre .count{
+    height: 22px;
+    width: 25px;
+    background: rgba(250, 250, 250, 0);
+    line-height: 22px;
+    text-align: center;
+}
+.incre_decre .plus{
+    height: 22px;
+    width: 27px;
+    background: rgb(0, 0, 0);
+    line-height: 22px;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+}
+.buy_remove{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding:5px 0px;
+   
+}
+.cart_buy{
+    width: 37px;
+    height: 27px;
+    background: green;
+    margin-right: 5px;
+    line-height: 27px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    color: white;
+
+
+}
+a{
+    color: white;
+}
+.card_remove{
+   
+    border-radius: 5px;
+   font-size: 20px;
+    cursor: pointer;
+    color: black;
+    text-align: center;
+    
+}
+.add_cart_close{
+    background: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    height: 30px;
+    width: 30px;
+    line-height: 35px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.add_cart_close:hover{
+    background: red;
+    color: white;
+}
+@media all and (max-width:920px) {
+    
+    .shirt_con .shirt_list{
+        gap: 5px;
+    }
+    .shirt_con .shirt_list .product{
+    width: 23.5%;
+    aspect-ratio:1/1.4;
+    background-color: #ffffff;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 0px 5px rgb(132, 130, 130);
+    
+    }
+}
+@media all and (max-width:821px) {
+    
+    .shirt_con .shirt_list{
+        gap: 15px;
+    }
+    .searchcon .searchbar{
+        height: 35px;
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+    
+    }
+    .search_items{
+        height: 98px;
+        width: 90%;
+        list-style: none;
+        margin-top: 2px;
+        overflow:scroll;
+        scrollbar-gutter: none;
+        display: none;
+    }
+   
+    .shirt_con .shirt_list .product{
+        width: 32%;
+        aspect-ratio:1/1.4;
+        background-color: #ffffff;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0px 0px 5px rgb(132, 130, 130);
+    
+    }
+}
+@media all and (max-width:770px) {
+    
+    .shirt_con .shirt_list{
+        gap: 10px;
+    }
+    .shirt_con .shirt_list .product{
+        width: 31%;
+        aspect-ratio:1/1.4;
+        background-color: #ffffff;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0px 0px 5px rgb(132, 130, 130);
+    
+    }
+}
+@media all and (max-width:620px) {
+    
+    .shirt_con .shirt_list{
+        gap: 5px;
+    }
+    .shirt_con .shirt_list .product{
+        width: 47%;
+        aspect-ratio:1/1.4;
+        background-color: #ffffff;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0px 0px 5px rgb(132, 130, 130);
+    
+    }
+}
+@media all and (max-width:500px) {
+    
+    .shirt_con .shirt_list{
+        gap: 5px;
+    }
+    .shirt_con .shirt_list .product{
+        width: 47%;
+        aspect-ratio:1/1.4;
+        background-color: #ffffff;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0px 0px 5px rgb(132, 130, 130);
+    
+    }
+    .add_cart_list_back{
+        height: 100%;
+        width: 80%;
+       background: rgba(255, 255, 255, 0.672);
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        overflow: scroll;
+    
+    }
+    
+}
+@media all and (max-width:400px) {
+    
+    .shirt_con .shirt_list{
+        gap: 5px;
+    }
+    .shirt_con .shirt_list .product{
+        width: 48%;
+        aspect-ratio:1/1.4;
+        background-color: #ffffff;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0px 0px 5px rgb(132, 130, 130);
+    
+    }
+}
+@media all and (max-width:350px) {
+    
+    .shirt_con .shirt_list{
+        gap: 5px;
+    }
+    .shirt_con .shirt_list .product{
+        width: 48.2%;
+        aspect-ratio:1/1.4;
+        background-color: #ffffff;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0px 0px 5px rgb(132, 130, 130);
+    
+    }
+}
+@media all and (max-width:300px) {
+    
+    .shirt_con .shirt_list{
+        gap: 5px;
+    }
+    .shirt_con .shirt_list .product{
+        width: 100%;
+        aspect-ratio:1/1.4;
+        background-color: #ffffff;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0px 0px 5px rgb(132, 130, 130);
+    
+    }
+    .add_cart_list_back{
+        height: 100%;
+        width:100%;
+       background: rgba(255, 255, 255, 0.672);
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        overflow: scroll;
+        transition:all 1s ease-in;
+    
+    }
+}

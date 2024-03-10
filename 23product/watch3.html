@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        body{
+            height: 100vh;
+            width: 100vw;
+        }
+        .container{
+            height: 100%;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+        }
+        body::-webkit-scrollbar{
+            display: none;
+        }
+        .shirt_info_con{
+            height: 100%;
+            width:100%;
+            padding: 10px;
+        }
+        .shirt_title p{
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .shirt_rate{
+            display: flex;
+            align-items: center;
+            height: 40px;
+            user-select: none;
+    
+        }
+        .shirt_rate .star{
+            margin-right: 5px;
+            user-select: none;
+        }
+        .shirt_rate .star span{
+            font-size: 28px;
+            line-height: 40px;
+            user-select: none;
+    
+        }
+        .shirt_rate .rate_count p{
+            font-size: 13px;
+        }
+        .quantity{
+            display: inline-block;
+            border: 2px solid black;
+            border-radius: 2px;
+            margin: 8px 0px;
+        }
+        
+        .quantity .quan_minus,.quan_count,.quan_plus{
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0px 10px;
+            background: black;
+            color: beige;
+            cursor: pointer;
+        }
+        .quan_count{
+            background: white;
+            color: black;
+            font-weight: 400;
+            cursor: default;
+    
+        }
+        .dum_amount{
+            text-decoration: line-through;
+            margin-right: 5px;
+        }
+        .shirt_amount{
+            margin: 10px 0px;
+            display: flex;
+        } 
+        .buy_button .buy{
+            background: rgb(17, 222, 17);
+            border-radius: 2px;
+            color: black;
+            display: inline-block;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .rate_title{
+            font-family: serif;
+            font-size: 20px;
+            font-weight: bold;
+    
+        }
+        .user_rating .user_star span{
+            font-size: 35px;
+            color: gold;
+            cursor: pointer;
+    
+        }
+        .feedback{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+    
+        }
+        .feedback label{
+            font-size: 17px;
+            font-weight: bold;
+            font-family: serif;
+            margin-bottom: 5px;
+        }
+        .pro_details{
+            margin: 13px 0px;
+        }
+        .pro_details .pro_details_title{
+            font-size: 20px;
+            font-weight: bold;
+            font-family: serif;
+        }
+        .pro_details p{
+            margin-top: 5px;
+            text-indent: 50px;
+            text-align: justify;
+            font-size: 15px;
+        }
+        .revi_area{
+            width: 100%;
+            position: relative;
+        }
+        .re_btn{
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: black;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+            cursor: pointer;
+           
+        }
+        .re_btn:hover{
+            transform: scale(0.95);
+        }
+        .re_btn:active{
+            transform: scale(1.05);
+        }
+    
+        #feed{
+            padding-right: 30px;
+            font-size: 17px;
+            width: 100%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        #feed::-webkit-scrollbar{
+            display: none;
+        }
+        .shirt_info_back{
+            overflow: scroll;
+            width: 50%;
+            height: 100%;
+        }
+        .shirt_info_back::-webkit-scrollbar{
+            display: none;
+        }
+    
+        /* change this product  */
+    
+        .cong_back{
+            height: 100vh;
+            width: 100vw;
+            background: rgba(0, 0, 0, 0.638);
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: scale(0);
+        }
+        .buycong{
+            background: rgb(255, 255, 255);
+            height:100px;
+            width:250px;
+            font-size: 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            position: relative;
+            box-shadow: 0px 0px  5px black;
+        }
+        .cong_name{
+            line-height: 100px;
+            text-align: center;
+        }
+        .shirt_container{
+            height: 100%;
+            width: 50%;
+            padding: 20px;
+           
+    
+        }
+        .img_con{
+            background: rgb(168, 168, 168);
+            height: 100%;
+            width: 100%;
+            display: flex;
+        }
+        .img_top{
+            height: 100%;
+            width: 100%;
+               
+        }
+        .img_top_back{
+            height: 100%;
+            width: 75%;
+            
+            overflow: hidden;
+        }
+        .img_top img{
+            height: 100%;
+            width: 100%;
+            display:block;
+        }
+        .img_bottom{
+            height: 100%;
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            background: white;
+    
+        }
+        .img_bottom img{
+           width: 100%;
+           height: 20%;
+           object-fit: cover;
+           padding: 5px 20px;
+           border-radius: 25%;
+           background: rgb(255, 255, 255);
+        }
+        .re_append{
+            width: 100%;
+            background: rgb(255, 255, 255);
+            min-height: 0px;
+            margin-top: 20px;
+        }
+        .re_append p{
+            width: 100%;
+            min-height: 0px;
+           
+            padding: 2px;
+    
+    
+        }
+        .re_append h4{
+            margin-top: 5px;
+        }
+        .add_back{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .content{
+            width:600px;
+            height: 90%;
+            background: pink;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            justify-content: center;
+           
+        }
+        .address_close{
+            background: red;
+            height: 25px;
+            width: 25px;
+            color: white;
+            text-align: center;
+            line-height: 25px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .content label{
+            font-size: 15px;
+            font-weight: bold;
+            padding-left: 30px;
+        }
+        .content input{
+            height: 40px;
+            width:80%;
+            margin: 0px 0px;
+            margin-left: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            padding-left: 10px;
+            margin-bottom: 5px;
+        }
+        #address{
+            height: 70px;
+            margin-left: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            width: 80%;
+            padding-left: 10px;
+    
+        }
+        .content .submitt{
+            width: 80px;
+            color: white;
+            background: rgb(255, 0, 0);
+            cursor: pointer;
+            height: 30px;
+            margin-top: 5px;
+            border: none;
+            outline: none;
+        }
+        .content .submitt:hover{
+            transform: scale(0.95);
+        }
+        .content .submitt:active{
+            transform: scale(1.05);
+        }
+        .cong_back2{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: scale(0);
+        }
+        .add_back2{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .content2{
+            width:600px;
+            height:90%;
+            background: pink;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+        .address_close2{
+            background: red;
+            height: 25px;
+            width: 25px;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .content2 label{
+            font-size: 15px;
+            font-weight: 100;
+            padding-left: 30px;
+        }
+        .content2 p{
+            height: 40px;
+            width:80%;
+            margin: 5px 0px;
+            margin-bottom: 10px;
+            margin-left: 30px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .confirm_btn2 .submitt2{
+            width: 90%;
+            background: green;
+            color: black;
+            cursor: pointer;
+            height: 30px;
+            outline: none;
+            border: none;
+            border-radius: 10px;
+            margin-left: 30px;
+        }
+        .confirm_btn2 .submitt2:hover{
+            transform: scale(0.99);
+        }
+        .confirm_btn2 .submitt2:active{
+            transform: scale(1.01);
+        }
+        .succesful_back{
+            height: 100%;
+            width: 100%;
+            background: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: scale(0);
+        }
+        .success_div{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .success_close{
+            background: rgb(0, 0, 0);
+            height: 30px;
+            width: 30px;
+            color: white;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 900;
+        }
+        .success_para{
+            height: 100px;
+            width: 250px;
+            background: rgb(0, 255, 255);
+            border-radius: 10px;
+            font-weight: 900;
+            font-size: 20px;
+            text-align: center;
+            line-height: 100px;
+        }
+        @media all and (max-width:821px)
+        {
+        .shirt_container{
+            height:800px;
+            width: 100%;
+            padding: 20px;
+            
+    
+        }
+        .container{
+            min-height: 100%;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .shirt_info_back{
+            width: 100%;
+            height: 100%;
+        }
+        .shirt_info_con{
+            height: 100%;
+            width:100%;
+            padding: 10px;
+        }
+        .img_bottom{
+            height: 100%;
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            background: white;
+    
+        }
+        .img_bottom img{
+           width: 100%;
+           height: 20%;
+           object-fit: cover;
+           border-radius: 25%;
+           background: rgb(255, 255, 255);
+        }
+    
+        }
+        @media all and (max-width:770px)
+        {
+        .shirt_container{
+            height:720px;
+            width: 100%;
+        }
+        .container{
+            min-height: 100%;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .shirt_info_back{
+            width: 100%;
+            min-height: 100px;
+        }
+        .shirt_info_con{
+            width:100%;
+            padding: 10px;
+        }
+        .img_bottom{
+            height: 100%;
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            background: white;
+    
+        }
+        .img_bottom img{
+           width: 100%;
+           height: 20%;
+           object-fit: cover;
+           border-radius: 25%;
+           background: rgb(255, 255, 255);
+        }
+    
+        }
+        @media all and (max-width:670px)
+        {
+        .shirt_container{
+            height:600px;
+            width: 100%;
+        }
+        .container{
+            min-height: 100%;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .shirt_info_back{
+            width: 100%;
+            min-height: 100px;
+        }
+        .shirt_info_con{
+            width:100%;
+            padding: 10px;
+        }
+        .img_bottom{
+            height: 100%;
+            width: 25%;
+            display: flex;
+            background: white;
+            flex-direction: column;
+    
+        }
+        .img_bottom img{
+           width: 100%;
+           height: 20%;
+           object-fit: cover;
+           border-radius: 25%;
+           background: rgb(255, 255, 255);
+        }
+        .content{
+            width:100%;
+            height:70%;
+            background: pink;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            justify-content: center;
+           
+        }
+        .content2{
+            width:100%;
+            height:70%;
+            background: pink;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+    
+        }
+        @media all and (max-width:500px)
+        {
+        .shirt_container{
+            height:500px;
+            width: 100%;
+            padding: 10px;
+        }
+        .container{
+            min-height: 100%;
+            width: 100%;
+            padding: 0px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .shirt_info_back{
+            width: 100%;
+            min-height: 100px;
+        }
+        .shirt_info_con{
+            width:100%;
+            padding: 10px;
+        }
+        .img_bottom{
+            height: 100%;
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+        .img_bottom img{
+           width: 100%;
+           height: 20%;
+           object-fit: cover;
+           padding:10px 15px;
+           border-radius:25%;
+           background: rgb(255, 255, 255);
+        }
+    
+        }
+        @media all and (max-width:400px)
+        {
+        .shirt_container{
+            height:400px;
+            width: 100%;
+            padding: 10px;
+            
+        }
+        .container{
+            min-height: 100%;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0%;
+        }
+        .shirt_info_back{
+            width: 100%;
+            min-height: 100px;
+        }
+        .shirt_info_con{
+            width:100%;
+            padding: 10px;
+        }
+        .img_bottom{
+            height: 100%;
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            background: white;
+    
+        }
+        .img_bottom img{
+           width: 100%;
+           height: 20%;
+           object-fit: cover;
+           padding:5px 5px;
+           border-radius:25%;
+           background: rgb(255, 255, 255);
+        }
+    
+        }
+        @media all and (max-width:350px)
+        {
+        .shirt_container{
+            height:350px;
+            width: 100%;
+            padding: 0px;
+            background: red;
+        }
+        .container{
+            min-height: 100%;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .shirt_info_back{
+            width: 100%;
+            min-height: 100px;
+        }
+        .shirt_info_con{
+            width:100%;
+            padding: 10px;
+        }
+        .img_bottom{
+            height: 100%;
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            background: white;
+    
+        }
+        .img_bottom img{
+           width: 100%;
+           height: 20%;
+           object-fit: cover;
+           padding:5px 5px;
+           border-radius:25%;
+           background: rgb(255, 255, 255);
+        }
+    
+        }
+        
+        </style>
+</head>
+<body>
+    <div class="container">
+    <div class="shirt_container">
+        <div class="img_con">
+            <div class="img_top_back">
+                <div class="img_top">
+                    <img src="D:\work\23product\watch1.jpg" alt="">
+                    <img src="D:\work\23product\watch2.jpg" alt="">
+                    <img src="D:\work\23product\watch3.jpg" alt="">
+                    <img src="D:\work\23product\watch4.jpg" alt="">
+                    <img src="D:\work\23product\watch5.jpg" alt="">
+                </div>
+            </div>
+            <div class="img_bottom">
+                <img src="D:\work\23product\watch1.jpg" alt="">
+                <img src="D:\work\23product\watch2.jpg" alt="">
+                <img src="D:\work\23product\watch3.jpg" alt="">
+                <img src="D:\work\23product\watch4.jpg" alt="">
+                <img src="D:\work\23product\watch5.jpg" alt="">
+            </div>
+        </div>
+    </div>       
+    <div class="shirt_info_back">
+        <div class="shirt_info_con">
+            <div class="shirt_title">
+                <p>LOUIS DEVINE EXCLUSIVE BRANDED IN INDIA </p>
+            </div>
+            <div class="shirt_rate">
+               <div class="star">
+                <span> &#9733</span>
+                <span> &#9733</span>
+                <span> &#9733</span>
+                <span> &#9733</span>
+                <span> &#9734</span>
+               </div>
+                    <div class="rate_count">
+                        <p>11,002 ratings</p>
+                    </div>
+            </div>
+            <div class="quantity">
+                <span class="quan_minus">-</span>
+                <span class="quan_count">1</span>
+                <span class="quan_plus">+</span>
+            </div>
+            <div class="shirt_amount">
+                <div class="dum_amount">
+                    2999
+                </div>
+                <p>$</p>
+                <div class="amount_no">
+                    1999
+                </div>
+            </div>
+            <div class="buy_button">
+                <div class="buy">Buy</div>
+            </div>
+            <div class="pro_details">
+                <div class="pro_details_title">Product Details:</div>
+                <table>
+                    <tr>
+                        <th style="padding-right: 16px;padding-bottom: 2px;">PACKOF</th><td>1</td>
+                    </tr>
+                    <tr>
+                        <th style="padding-right: 20px;padding-bottom: 2px;">BATTERY</th><td>FULL</td>
+                    </tr>
+                    <tr>
+                        <th style="padding-right: 20px;padding-bottom: 2px;">DISPLAY</th><td>NO</td>
+                    </tr>
+                    <tr>
+                        <th style="padding-right: 15px;padding-bottom: 2px;">PATTERN</th><td>ANALOCK</td>
+                    </tr>
+                    <tr>
+                        <th style="padding-right: 20px;padding-bottom: 2px;">WATER</th><td>YES</td>
+                    </tr>
+                </table>
+               </div>
+            <div class="user_rating">
+                <p class="rate_title">Rate This Product:</p>
+                <div class="user_star">
+                    <span> &#9734</span>
+                    <span> &#9734</span>
+                    <span> &#9734</span>
+                    <span> &#9734</span>
+                    <span> &#9734</span>
+                   </div>
+                   <div class="feedback">
+                    <label for="feed">feedBack:</label>
+                    <div class="revi_area">
+                        <input type="submit" class="re_btn">
+                        <textarea name="" id="feed" rows="3" placeholder="reveiw Something........" style="padding-left: 10px;"></textarea>
+                    </div>
+                    <ol class="re_append">
+                        <li>
+                            <h4>Reviews</h4>
+                            <p>Value for money,One Of The Branded Best watch In Our Collection.......</p>
+                        </li>       
+                    </ol>
+                   </div>
+                   
+            </div>
+    
+           </div>
+    </div>
+    </div>
+    <div class="cong_back">
+        <div class="add_back">
+           <div class="content">
+            <div class="enter_address">
+                <div class="address_close">✕</div>
+            </div>
+            <label for="enter_email">E-mail</label>
+            <input id="enter_email" type="email">
+            
+            <label for="password">PassWord</label>
+            <input id="password" type="password">
+    
+            <label for="enter_phno">Contact</label>
+            <input id="enter_phno" type="number">
+    
+            <label for="UserName">UserName</label>
+            <input id="UserName" type="text">
+    
+            <label for="District">District</label>
+            <input id="District" type="text">
+    
+            <label for="address">Address</label>
+           <textarea id="address" cols="10px" rows="10px"></textarea>
+           <div class="confirm_btn">
+            <input class="submitt" type="submit" value="submit">
+           </div>
+           </div>
+        </div>
+    </div>
+    <div class="cong_back2">
+        <div class="add_back2">
+           <div class="content2">
+            <div class="enter_address2">
+                <div class="address_close2">✕</div>
+            </div>
+            <label for="address">E-mail:-</label>
+            <p class="enteremail">arifin1234@gmail.com</p>
+            <label for="address">Password:-</label>
+            <p class="enterpass">arifin1234</p>
+            <label for="address">Phno:-</label>
+            <p class="enterphno">9942829191</p>
+            <label for="address">Username:-</label>
+            <p class="enteruser">mohamed arifin s</p>
+            <label for="address">District:-</label>
+            <p class="enterdistrict">Ramanathapuram</p>
+            <label for="address">Address:-</label>
+            <p class="enteradd">2/196-A,south street,Thiruppalaikudi,Ramanathapuram</p>
+            
+           <div class="confirm_btn2">
+            <input class="submitt2" type="submit" value="Order">
+           </div>
+           </div>
+        </div>
+    </div>
+    <div class="succesful_back">
+        <div class="success_close">✕</div>
+       <div class="success_div">
+        <p class="success_para">successfully Ordered</p>
+       </div>
+    </div>
+    <script>
+        var img_top = document.querySelector(".img_top")
+        var img_bottom = document.querySelectorAll(".img_bottom img")
+        img_bottom.forEach((img,index)=>{
+            
+        
+            img.addEventListener("mouseover",()=>{
+                var value = index*100;
+                
+                img_top.style.transform = `translateY(${-value}%)`;
+            })
+        })
+        var quan_minus = document.querySelector(".quan_minus");
+        var quan_count = document.querySelector(".quan_count");
+        var amount_no = document.querySelector(".amount_no")
+        var constamount = amount_no.innerHTML;
+        quan_minus.addEventListener("click",()=>{
+            if(quan_count.innerHTML<=1)
+            {
+                quan_count.innerHTML=1;
+                amount_no.innerHTML=constamount*quan_count.innerHTML;
+            }else{
+                quan_count.innerHTML--;
+                amount_no.innerHTML=constamount*quan_count.innerHTML;
+            }
+        })
+        var quan_plus = document.querySelector(".quan_plus");
+        quan_plus.addEventListener("click",()=>{
+            if(quan_count.innerHTML>=5)
+            {
+                quan_count.innerHTML=5;
+                amount_no.innerHTML=constamount*quan_count.innerHTML;
+            }else{
+                quan_count.innerHTML++;
+                amount_no.innerHTML=constamount*quan_count.innerHTML;
+            }
+        })
+        var user_star = document.querySelectorAll(".user_star span")
+        user_star.forEach((star,index) =>{
+            var cur_star = index+1;
+            star.addEventListener("click",()=>{
+                user_star.forEach((sta,int)=>{
+                    if(cur_star>=int+1)
+                {
+                    sta.innerHTML = "&#9733";
+                }else{
+                    sta.innerHTML = "&#9734";
+                } 
+                })
+            })
+        })
+        var re_btn = document.querySelector(".re_btn")
+        var re_append = document.querySelector(".re_append")
+
+        re_btn.addEventListener("click",()=>{
+            var feed = document.querySelector("#feed").value;
+            var create_re = document.createElement("li")
+            var h1 = document.createElement("h4")
+            var para = document.createElement("p")
+            h1.innerHTML="Reviews"
+            para.innerHTML=feed;
+            create_re.appendChild(h1);
+            create_re.appendChild(para);
+            re_append.appendChild(create_re);
+            var feed = document.querySelector("#feed").value=""; 
+        })
+        var buy_button = document.querySelector(".buy_button .buy");
+        var cong_back = document.querySelector(".cong_back");
+        var address_close = document.querySelector(".address_close");
+        buy_button.addEventListener("click",()=>{
+            cong_back.style.transform = "scale(1)"
+        })
+        address_close.addEventListener("click",()=>{
+            cong_back.style.transform = "scale(0)"
+        })
+        // -------------------------------------------------------------
+        var confirm_btn = document.querySelector(".confirm_btn .submitt");
+        var cong_back2 = document.querySelector(".cong_back2 ");
+        var address_close2 = document.querySelector(".address_close2");
+        confirm_btn.addEventListener("click",()=>{
+            cong_back2.style.transform = "scale(1)";
+
+            var enter_email = document.querySelector("#enter_email ");
+            var password = document.querySelector("#password ");
+            var enter_phno = document.querySelector("#enter_phno ");
+            var UserName = document.querySelector("#UserName ");
+            var District = document.querySelector("#District ");
+            var address = document.querySelector("#address ");
+
+            var enteremail = document.querySelector(".content2 .enteremail");
+            var enterpass = document.querySelector(".content2 .enterpass");
+            var enterphno = document.querySelector(".content2 .enterphno");
+            var enteruser = document.querySelector(".content2 .enteruser");
+            var enterdistrict = document.querySelector(".content2 .enterdistrict");
+            var enteradd = document.querySelector(".content2 .enteradd");
+
+            enteremail.innerHTML = enter_email.value;
+            enterpass.innerHTML = password.value;
+            enterphno.innerHTML = enter_phno.value;
+            enteruser.innerHTML = UserName.value;
+            enterdistrict.innerHTML = District.value;
+            enteradd.innerHTML = address.value;
+            
+        })
+        address_close2.addEventListener("click",()=>{
+            cong_back2.style.transform = "scale(0)"
+        })
+        var confirm_btn2 = document.querySelector(".confirm_btn2 .submitt2");
+        var succesful_back = document.querySelector(".succesful_back")
+        confirm_btn2.addEventListener("click",()=>{
+            succesful_back.style.transform = "scale(1)";
+        })
+        var success_close = document.querySelector(".success_close")
+
+        success_close.addEventListener("click",()=>{
+            succesful_back.style.transform = "scale(0)";
+            cong_back2.style.transform = "scale(0)";
+            cong_back.style.transform = "scale(0)"
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body{
+            height: 100Vh;
+            width: 100vw;
+            display: grid;
+            place-content: center;
+        }
+        .imageslider{
+            height: 400px;
+            width: 500px;
+            border: 2px solid grey;
+            border-radius: 10px;
+        }
+        .slider,.hidden{
+            height: 100%;
+            width: 100%;
+            display: none;
+        }
+        .active{
+            display: block;
+            animation: act .5s ease;
+        }
+        @keyframes act{
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        img{
+            height: 100%;
+            width: 100%;
+            border-radius: 9px;
+        }
+        .dots,.normol{
+            background:rgb(19, 14, 14);
+            height: 5px;
+            width: 20px;
+            display: inline-block;
+            border: 2px solid black;
+            margin-left: 5px;
+            border-radius: 2px;
+            text-align: center;
+        }
+        .dotsactive{
+            background: rgb(251, 246, 246);
+            border: 2px solid rgb(250, 243, 243);
+
+        }
+        .dotcontainer{
+            position: absolute;
+            bottom:12%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="imageslider">
+        <div class="slider active"><img src="1.jpg" alt="img1"></div>
+        <div class="slider"><img src="2.jpg" alt="img2"></div>
+        <div class="slider"><img src="3.jpg" alt="img3"></div>
+        <div class="slider"><img src="2.jpg" alt="img4"></div>
+        <div class="slider"><img src="3.jpg" alt="img5"></div>
+        <div class="slider"><img src="2.jpg" alt="img6"></div>
+        <div class="slider"><img src="3.jpg" alt="img7"></div>
+        <div class="dotcontainer">
+
+        </div>
+    </div>
+    <button class="right">right</button>
+    <button class="left">left</button>
+    <script>
+        var imageslider = document.querySelector(".imageslider")
+        var slider = document.querySelectorAll(".slider")
+        var right = document.querySelector(".right")
+        var left = document.querySelector(".left")
+        var counter =0;
+        var totalslider = slider.length
+
+
+        right.addEventListener("click",changeright)
+        function changeright(){
+            if(counter>=totalslider-1){
+                counter = 0;
+            }else{
+                counter++;
+            }
+           
+            change() 
+        }
+
+
+        left.addEventListener("click",changeleft)
+        function changeleft(){
+            if(counter<=0){
+                counter= totalslider-1
+            }else{
+                counter--;
+            }
+            change()
+        }
+
+
+        function change(){
+            slider.forEach(slide=>{
+                slide.classList.remove("active");
+                slide.classList.add("hidden"); 
+                slider[counter].classList.add("active");
+            })
+            dotss.forEach(dots=>{
+            dots.classList.remove("dotsactive");
+                dots.classList.add("normol");
+                dotss[counter].classList.add("dotsactive")         
+        })
+    }   
+
+        // to insert the dots into the foreach slider
+        // And create the div and also add classList 
+
+        var dotcontainer = document.querySelector(".dotcontainer")
+        console.log(dotcontainer)
+          slider.forEach(slide=>{
+            var dot = document.createElement("div");
+            dot.classList.add("dots")
+            dotcontainer.appendChild(dot);
+        })
+
+        // dots collection
+
+        var dotss = document.querySelectorAll(".dots")
+        dotss[counter].classList.add("dotsactive")         
+
+    </script>
+</body>
+</html>
