@@ -853,5 +853,128 @@
        <div class="success_div">
         <p class="success_para">successfully Ordered</p>
        </div>
-    <
+    </div>
+    <script>
+        var img_top = document.querySelector(".img_top")
+        var img_bottom = document.querySelectorAll(".img_bottom img")
+        img_bottom.forEach((img,index)=>{
+            
+        
+            img.addEventListener("mouseover",()=>{
+                var value = index*100;
+                
+                img_top.style.transform = `translateY(${-value}%)`;
+            })
+        })
+        var quan_minus = document.querySelector(".quan_minus");
+        var quan_count = document.querySelector(".quan_count");
+        var amount_no = document.querySelector(".amount_no")
+        var constamount = amount_no.innerHTML;
+        quan_minus.addEventListener("click",()=>{
+            if(quan_count.innerHTML<=1)
+            {
+                quan_count.innerHTML=1;
+                amount_no.innerHTML=constamount*quan_count.innerHTML;
+            }else{
+                quan_count.innerHTML--;
+                amount_no.innerHTML=constamount*quan_count.innerHTML;
+            }
+        })
+        var quan_plus = document.querySelector(".quan_plus");
+        quan_plus.addEventListener("click",()=>{
+            if(quan_count.innerHTML>=5)
+            {
+                quan_count.innerHTML=5;
+                amount_no.innerHTML=constamount*quan_count.innerHTML;
+            }else{
+                quan_count.innerHTML++;
+                amount_no.innerHTML=constamount*quan_count.innerHTML;
+            }
+        })
+        var user_star = document.querySelectorAll(".user_star span")
+        user_star.forEach((star,index) =>{
+            var cur_star = index+1;
+            star.addEventListener("click",()=>{
+                user_star.forEach((sta,int)=>{
+                    if(cur_star>=int+1)
+                {
+                    sta.innerHTML = "&#9733";
+                }else{
+                    sta.innerHTML = "&#9734";
+                } 
+                })
+            })
+        })
+        var re_btn = document.querySelector(".re_btn")
+        var re_append = document.querySelector(".re_append")
+
+        re_btn.addEventListener("click",()=>{
+            var feed = document.querySelector("#feed").value;
+            var create_re = document.createElement("li")
+            var h1 = document.createElement("h4")
+            var para = document.createElement("p")
+            h1.innerHTML="Reviews"
+            para.innerHTML=feed;
+            create_re.appendChild(h1);
+            create_re.appendChild(para);
+            re_append.appendChild(create_re);
+            var feed = document.querySelector("#feed").value=""; 
+        })
+        var buy_button = document.querySelector(".buy_button .buy");
+        var cong_back = document.querySelector(".cong_back");
+        var address_close = document.querySelector(".address_close");
+        buy_button.addEventListener("click",()=>{
+            cong_back.style.transform = "scale(1)"
+        })
+        address_close.addEventListener("click",()=>{
+            cong_back.style.transform = "scale(0)"
+        })
+        // -------------------------------------------------------------
+        var confirm_btn = document.querySelector(".confirm_btn .submitt");
+        var cong_back2 = document.querySelector(".cong_back2 ");
+        var address_close2 = document.querySelector(".address_close2");
+        confirm_btn.addEventListener("click",()=>{
+            cong_back2.style.transform = "scale(1)";
+
+            var enter_email = document.querySelector("#enter_email ");
+            var password = document.querySelector("#password ");
+            var enter_phno = document.querySelector("#enter_phno ");
+            var UserName = document.querySelector("#UserName ");
+            var District = document.querySelector("#District ");
+            var address = document.querySelector("#address ");
+
+            var enteremail = document.querySelector(".content2 .enteremail");
+            var enterpass = document.querySelector(".content2 .enterpass");
+            var enterphno = document.querySelector(".content2 .enterphno");
+            var enteruser = document.querySelector(".content2 .enteruser");
+            var enterdistrict = document.querySelector(".content2 .enterdistrict");
+            var enteradd = document.querySelector(".content2 .enteradd");
+
+            enteremail.innerHTML = enter_email.value;
+            enterpass.innerHTML = password.value;
+            enterphno.innerHTML = enter_phno.value;
+            enteruser.innerHTML = UserName.value;
+            enterdistrict.innerHTML = District.value;
+            enteradd.innerHTML = address.value;
+            
+        })
+        address_close2.addEventListener("click",()=>{
+            cong_back2.style.transform = "scale(0)"
+        })
+        var confirm_btn2 = document.querySelector(".confirm_btn2 .submitt2");
+        var succesful_back = document.querySelector(".succesful_back")
+        confirm_btn2.addEventListener("click",()=>{
+            console.log("arifin")
+            succesful_back.style.transform = "scale(1)";
+        })
+        var success_close = document.querySelector(".success_close")
+
+        success_close.addEventListener("click",()=>{
+            succesful_back.style.transform = "scale(0)";
+            cong_back2.style.transform = "scale(0)";
+            cong_back.style.transform = "scale(0)"
+
+        })
+    </script>
 </body>
+</html>
